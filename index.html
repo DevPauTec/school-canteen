@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Canteen</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="canteen-app">
+    <!-- Navigation Menu -->
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-content">
+        <button class="close-nav" id="closeNav">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="contact-section">
+          <h3>Contact Us</h3>
+          <div class="phone-number">
+            <i class="fas fa-phone"></i>
+            <span>+233 12 345 6789</span>
+            <a href="tel:+233123456789" class="call-btn">
+              <i class="fas fa-phone-volume"></i> Call
+            </a>
+          </div>
+        </div>
+        
+        <div class="feedback-section">
+  <h3>Send Feedback</h3>
+  <form id="feedbackForm">
+    <div class="form-group">
+      <label for="feedbackName">Full Name</label>
+      <input type="text" id="feedbackName" required>
+    </div>
+    <div class="form-group">
+      <label for="feedbackEmail">Your Email</label>
+      <input type="email" id="feedbackEmail" required>
+    </div>
+    <div class="form-group">
+      <label for="feedbackMessage">Message</label>
+      <textarea id="feedbackMessage" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="primary-btn">
+      <i class="fas fa-paper-plane"></i> Send Feedback
+    </button>
+  </form>
+</div>
+      </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="app-header">
+      <div class="header-content">
+        <img src="images/logo2.png" alt="School Logo" class="logo">
+        <div class="header-text">
+          <h1>School Canteen</h1>
+          <p>Order delicious meals for your child with ease</p>
+        </div>
+        <button class="menu-btn" id="menuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Order Details Section -->
+    <section class="order-details card">
+      <div class="section-header">
+        <div class="icon-circle">
+          <i class="fas fa-clipboard-list"></i>
+        </div>
+        <h2>Order Details</h2>
+      </div>
+      
+      <div class="form-group">
+        <label for="orderDate">Select Date</label>
+        <div class="input-with-icon">
+          <i class="far fa-calendar-alt"></i>     
+          <input type="date" id="orderDate" class="date-picker" required placeholder="Choose order date">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="classSelect">Class</label>
+        <div class="input-with-icon">
+          <i class="fas fa-users"></i>
+          <select id="classSelect" required>
+            <option value="" disabled selected>Select class</option>
+            <option>Class 1A</option>
+            <option>Class 1B</option>
+            <option>Class 2A</option>
+            <option>Class 2B</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="childSelect">Child</label>
+        <div class="input-with-icon">
+          <i class="fas fa-child"></i>
+          <select id="childSelect" required disabled>
+            <option value="" disabled selected>Select child</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Display Section -->
+    <section class="menu-display card">
+      <!-- Date Prompt (shown by default) -->
+      <h3>🍴🍱 Select a date to view<br> menu</h3>
+      <div class="date-prompt">
+        <div class="prompt-icon">
+          <i class="far fa-calendar-alt"></i>
+        </div>
+        
+        <p>Please select a date to see the available meals for that day.</p>
+      </div>
+      
+      <!-- Menu Content (hidden initially) -->
+      <div class="menu-content" style="display: none;">
+        <h2 id="menuHeader">Today's Menu</h2>
+        
+        <div class="menu-section">
+          <h3 class="section-title">Main Meals</h3>
+          <div class="meal-grid" id="mainMeals"></div>
+        </div>
+        
+        <div class="menu-section">
+          <h3 class="section-title">Extras</h3>
+          <div class="meal-grid" id="extras"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Summary Section -->
+    <section class="order-summary card">
+      <div class="section-header">
+        <div class="icon-circle">
+          <i class="fas fa-cart"></i>
+          <img src="images/cart.png" alt="canteen cart">
+        </div>
+        <h style="text-align: left; font-size: 20px; font-weight:800"2>Order Summary</h2>
+      </div>
+      
+      <div class="summary-items">
+        <div class="summary-item">
+          <span class="label">Date:</span>
+          <span id="summaryDate" class="value">Not selected</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Class:</span>
+          <span id="summaryClass" class="value">Not selected</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Child:</span>
+          <span id="summaryChild" class="value">Not selected</span>
+        </div>
+      </div>
+      
+      <div class="cart-section">
+        <h3>Your Order</h3>
+        <div class="cart-items">
+          <div id="cartContents" class="cart-items-list"></div>
+          <div id="emptyCart" class="empty-cart">
+            <i class="fas fa-shopping-basket"></i>
+            <p>No items added yet</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="total-section">
+        <div class="total-item">
+          <span class="label">Subtotal:</span>
+          <span id="subtotalAmount" class="value">GHC0.00</span>
+        </div>
+        <div class="total-item">
+          <span class="label">Total:</span>
+          <span id="totalAmount" class="value total-price">GHC0.00</span>
+        </div>
+      </div>
+      
+      <button id="checkoutBtn" class="primary-btn" disabled>
+        <i class="fas fa-lock"></i> Proceed to Checkout
+      </button>
+      <p class="help-text">Please select date, class, child, and add items to proceed</p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
